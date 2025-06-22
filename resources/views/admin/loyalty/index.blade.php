@@ -62,9 +62,11 @@
         $(document).ready(function() {
 
             $(document).on('click', '#loyaltyCloseBtn, #loyaltyCancelBtn', function() {
+                $('#loyaltyTitleError, #loyaltyDescriptionError, #loyaltyImageError').text('').hide();
+                $('#loyalty_name, #description_id, #image_id').removeClass('is-invalid');
                 $('#createLoyaltyForm')[0].reset();
             });
-
+        
 
 
             $('#loyaltyTable').DataTable({
@@ -171,7 +173,8 @@
 
             $(document).on('click', '.edit-loyalty', function() {
                 let id = $(this).data('id');
-
+                 $('#loyalty_editTitleError, #loyalty_editDescriptionError').text('').hide();
+                  $('#loyalty_edit_title, #edit_description_id').removeClass('is-invalid');
                 $.ajax({
                     url: "{{ route('admin.loyalty.edit', ['id' => ':id']) }}".replace(':id', id),
                     type: "GET",

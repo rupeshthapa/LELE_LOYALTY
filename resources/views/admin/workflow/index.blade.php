@@ -60,6 +60,8 @@
         $(document).ready(function() {
 
             $(document).on('click', '#workflowCloseBtn, #workflowCancelBtn', function() {
+                $('#workflowTitleError, #workflowDescriptionError, #workflowImageError').text('').hide();
+                $('#workflow_title, #description_id, #image_id').removeClass('is-invalid');
                 $('#createWorkflowForm')[0].reset();
             });
 
@@ -155,7 +157,8 @@
 
             $(document).on('click', '.edit-workflow', function() {
                 let id = $(this).data('id');
-
+                $('#edit_workflowTitleError, #edit_workflowDescriptionError').text('').hide();
+                $('#edit_workflow_title, #edit_description_id').removeClass('is-invalid');
                 $.ajax({
                     url: "{{ route('admin.workflow.edit', ':id') }}".replace(':id', id),
                     type: "GET",

@@ -61,6 +61,8 @@
         $(document).ready(function() {
 
             $(document).on('click', '#reasonCloseBtn, #reasonCancelBtn', function() {
+                $('#reasonTitleError, #reasonDescriptionError, #reasonIconError').text('').hide();
+                $('#reason_title, #description_id, #icon_id').removeClass('is-invalid');
                 $('#createReasonForm')[0].reset();
             });
 
@@ -156,7 +158,8 @@
 
             $(document).on('click', '.edit-reason', function() {
                 let id = $(this).data('id');
-
+                 $('#edit_reasonTitleError, #edit_reasonDescriptionError').text('').hide();
+                $('#edit_reason_title, #edit_description_id').removeClass('is-invalid');
                 $.ajax({
                     url: "{{ route('admin.reasons.edit', ['id' => ':id']) }}".replace(':id', id),
                     type: "GET",

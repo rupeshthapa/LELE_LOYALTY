@@ -61,6 +61,10 @@
         $(document).ready(function() {
 
             $(document).on('click', '#featureCloseBtn, #cancelFeatureBtn', function() {
+                $('#featureTitleError, #featureDescriptionError, #featureClassError, #imageClassError, #featureImageError')
+                    .text('').hide();
+                $('#feature_title, #feature_description, #feature_class, #image_class, #feature_image')
+                    .removeClass('is-invalid');
                 $('#createFeatureForm')[0].reset();
             });
 
@@ -191,7 +195,10 @@
 
             $(document).on('click', '.edit-feature', function() {
                 let id = $(this).data('id');
-
+                $('#editFeatureTitleError, #editFeatureDescriptionError, #editFeatureClassError, #editImageClassError, #editFeatureImageError')
+                    .text('').hide();
+                $('#editFeature_title, #editFeature_description, #editFeature_class, #edit_image_class, #editFeature_image')
+                    .removeClass('is-invalid');
                 $.ajax({
                     url: "{{ route('admin.feature.edit', ['id' => ':id']) }}".replace(':id', id),
                     type: "GET",

@@ -59,6 +59,8 @@
         $(document).ready(function() {
 
             $(document).on('click', '#sectorCloseBtn, #sectorCancelBtn', function() {
+                $('#sectorTitleError, #sectorImageError').text('').hide();
+                $('#sector_title, #image_id').removeClass('is-invalid');
                 $('#createSectorForm')[0].reset();
             });
 
@@ -140,7 +142,8 @@
 
             $(document).on('click', '.edit-sector', function() {
                 let id = $(this).data('id');
-
+                $('#edit_sectorTitleError').text('').hide();
+                $('#edit_sector_title').removeClass('is-invalid');
                 $.ajax({
                     url: "{{ route('admin.sectors.edit', ['id' => ':id']) }}".replace(':id', id),
                     type: "GET",

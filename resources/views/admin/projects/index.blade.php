@@ -64,7 +64,8 @@
 
 
             $(document).on('click', '#projectCloseBtn, #projectCancelBtn', function() {
-
+                $('#projectNameError, #projectDescriptionError, #projectImageError').text('').hide();
+                $('#project_name, #description_id, #image_id').removeClass('is-invalid');
                 $('#createProjectForm')[0].reset();
             });
 
@@ -152,7 +153,7 @@
                             }
                             if (errors.description) {
                                 $('#projectDescriptionError').text(errors.description[0])
-                            .show();
+                                    .show();
                                 $('#description_id').addClass('is-invalid');
                             }
                             if (errors.logo) {
@@ -170,6 +171,9 @@
 
             $(document).on('click', '.edit-projects', function() {
                 let id = $(this).data('id');
+                $('#projectNameEditError, #projectDescriptionEditError, #projectImageError').text('')
+                    .hide();
+                $('#edit_project_name, #edit_description_id, #edit_image_id').removeClass('is-invalid');
 
                 $.ajax({
                     url: '{{ route('admin.projects.edit', ['id' => ':id']) }}'.replace(':id', id),
@@ -183,7 +187,7 @@
 
                         if (response.logo) {
                             $('#editLogoPreview').attr("src", `/storage/${response.logo}`)
-                            .show();
+                                .show();
                         } else {
                             $('#editLogoPreview').hide();
                         }
@@ -201,7 +205,7 @@
                 let formData = new FormData(this);
 
                 $('#projectNameEditError, #projectDescriptionEditError, #projectImageError').text('')
-            .hide();
+                    .hide();
                 $('#edit_project_name, #edit_description_id, #edit_image_id').removeClass('is-invalid');
 
 
@@ -223,7 +227,7 @@
 
                             if (errors.name) {
                                 $('#projectNameEditError').text(errors.name[0])
-                            .show(); // Set and show the error message
+                                    .show(); // Set and show the error message
                                 $('#edit_project_name').addClass('is-invalid');
                             }
 

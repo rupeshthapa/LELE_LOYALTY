@@ -16,7 +16,7 @@
                             <input type="text" class="form-control" id="name" placeholder="Full name"
                                 name="name" style="padding: 15px 20px;">
                             <span class="asterisk">*</span>
-                            <div class="validation-message" id="validation-name"></div>
+                            <div class="validation-message" id="validation-name" style="color: red;"></div>
                         </div>
 
 
@@ -25,40 +25,40 @@
                                 placeholder="Organization/Business Name" name="organization_name"
                                 style="padding: 15px 20px;">
                             <span class="asterisk">*</span>
-                            <div class="validation-message" id="validation-organization_name"></div>
+                            <div class="validation-message" id="validation-organization_name" style="color: red;"></div>
                         </div>
 
                         <div data-aos="fade-up" class="col-md-6 col-sm-12" style="position: relative;">
                             <input type="email" class="form-control" id="email" placeholder="Email" name="email"
                                 style="padding: 15px 20px; ">
                             <span class="asterisk">*</span>
-                            <div class="validation-message" id="validation-email"></div>
+                            <div class="validation-message" id="validation-email" style="color: red;"></div>
                         </div>
 
                         <div data-aos="fade-up" class="col-md-6 col-sm-12" style="position: relative;">
                             <input type="number" class="form-control" id="phone_number" placeholder="Phone"
                                 name="phone_number" style="padding: 15px 20px;">
-                            <div class="validation-message" id="validation-phone_number"></div>
+                            <div class="validation-message" id="validation-phone_number" style="color: red;"></div>
                         </div>
 
                         <div data-aos="fade-up" class="col-md-6 col-sm-12" style="position: relative;">
                             <input type="text" class="form-control" id="address" placeholder="Address"
                                 name="address" style="padding: 15px 20px;">
                             <span class="asterisk">*</span>
-                            <div class="validation-message" id="validation-address"></div>
+                            <div class="validation-message" id="validation-address" style="color: red;"></div>
                         </div>
 
                         <div data-aos="fade-up" class="col-md-6 col-sm-12" style="position: relative;">
                             <input type="text" class="form-control" id="country" placeholder="Country"
                                 name="country" style="padding: 15px 20px;">
-                            <div class="validation-message" id="validation-country"></div>
+                            <div class="validation-message" id="validation-country" style="color: red;"></div>
                         </div>
 
                         <div data-aos="fade-up" class="col-md-12 col-sm-12" style="position: relative;">
                             <textarea class="form-control" rows="5" placeholder="Your message" name="message" id="message"
                                 style="padding: 15px 20px;"></textarea>
                             <span class="asterisk-second">*</span>
-                            <div class="validation-message" id="validation-message"></div>
+                            <div class="validation-message" id="validation-message" style="color: red;"></div>
                         </div>
 
                         <div data-aos="fade-up" class="col-md-12 col-sm-12">

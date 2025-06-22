@@ -109,7 +109,7 @@
 
             e.preventDefault();
 
-            $('#validation-name, #validation-organization-name, #validation-email, #validation-phone_number, #validation-address, #validation-country, #validation-message')
+            $('#validation-name, #validation-organization_name, #validation-email, #validation-phone_number, #validation-address, #validation-country, #validation-message')
                 .text('').hide();
             $('#name, #organization_name, #email, #phone_number, #address, #country, #message')
                 .removeClass('is-invalid');
@@ -136,7 +136,7 @@
                             $('#name').addClass('is-invalid');
                         }
                         if (errors.organization_name) {
-                            $('#validation-organization-name').text(errors
+                            $('#validation-organization_name').text(errors
                                 .organization_name[0]).show();
                             $('#organization_name').addClass('is-invalid');
                         }
@@ -203,7 +203,10 @@
             didOpen: (toast) => {
                 toast.addEventListener('mouseenter', Swal.stopTimer)
                 toast.addEventListener('mouseleave', Swal.resumeTimer)
-            }
+            },
+            customClass: {
+            title: 'swal-custom-font'
+        }
         });
     }
 </script>

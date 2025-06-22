@@ -61,6 +61,8 @@
         $(document).ready(function() {
 
             $(document).on('click', '#aboutCloseBtn, #aboutCancelBtn', function() {
+                $('#aboutTitleError, #aboutDescriptionError, #aboutImageError').text('').hide();
+                $('#about_name, #description_id, #image_id').removeClass('is-invalid');
                 $('#createAboutForm')[0].reset();
             });
 
@@ -165,7 +167,8 @@
 
             $(document).on('click', '.edit-about', function() {
                 let id = $(this).data('id');
-
+                $('#about_editTitleError, #about_editDescriptionError').text('').hide();
+                $('#about_edit_title, #edit_description_id').removeClass('is-invalid');
                 $.ajax({
                     url: "{{ route('admin.about.edit', ['id' => ':id']) }}".replace(':id', id),
                     type: "GET",

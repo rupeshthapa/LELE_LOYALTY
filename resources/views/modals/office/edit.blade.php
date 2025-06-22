@@ -22,6 +22,7 @@
                     <div class="mb-3" id="editOfficeDescriptionDiv">
                         <label for="edit_office_description" class="form-label">Description</label>
                         <textarea class="form-control" id="edit_office_description" name="description" rows="3"></textarea>
+                        <p class="form-text text-muted small fst-italic mt-1">Note: Use /n to create a new line.</p>
                         <div class="invalid-feedback" id="editOfficeDescriptionError"></div>
                     </div>
 
@@ -32,7 +33,7 @@
                         <input type="text" class="form-control" id="edit_office_icon" name="icon">
                         <div class="invalid-feedback" id="editOfficeIconError"></div>
                     </div>
-                    <p class="form-text text-muted small fst-italic mt-1">Note: Use /n to create a new line.</p>
+                    
                 </div>
 
                 <div class="modal-footer">

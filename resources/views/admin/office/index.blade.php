@@ -62,6 +62,9 @@
         $(document).ready(function() {
 
             $(document).on('click', '#officeCloseBtn, #officeCancelBtn', function() {
+                $('#officeTitleError, #officeDescriptionError, #officeIconError').text('').hide();
+                $('#office_title, #office_description, #office_icon').removeClass('is-invalid');
+
                 $('#createOfficeForm')[0].reset();
             });
 
@@ -102,7 +105,7 @@
             $('#createOfficeForm').on('submit', function(e) {
                 e.preventDefault();
 
-                $('officeTitleError, #officeDescriptionError, #officeIconError').text('').hide();
+                $('#officeTitleError, #officeDescriptionError, #officeIconError').text('').hide();
                 $('#office_title, #office_description, #office_icon').removeClass('is-invalid');
 
                 let formData = new FormData(this);
@@ -160,7 +163,10 @@
             $(document).on('click', '.edit-office', function() {
 
                 let id = $(this).data('id');
-
+                $('#editOfficeTitleError, #editOfficeDescriptionError, #editOfficeIconError').text('')
+                .hide();
+                $('#edit_office_title, #edit_office_description, #edit_office_icon').removeClass(
+                    'is-invalid');
                 $.ajax({
                     url: "{{ route('admin.office.edit', ['id' => ':id']) }}".replace(':id', id),
                     type: "GET",

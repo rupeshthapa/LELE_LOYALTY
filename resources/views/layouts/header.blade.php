@@ -112,4 +112,9 @@
      .back-to-top-btn i {
          line-height: 1;
      }
+     .swal-custom-font {
+    font-size: 20px !important;  /* Make it larger — try 24px or more */
+    font-weight: bold;          /* Optional: make it bolder */
+}
+
  </style>
