@@ -257,66 +257,137 @@
         });
 
         
-    document.querySelectorAll('[data-lte-toggle="sidebar"]').forEach(btn => {
+   document.querySelectorAll('[data-lte-toggle="sidebar"]').forEach(btn => {
   btn.addEventListener('click', e => {
     e.preventDefault();
 
-    const sidebar = document.querySelector('.app-sidebar');
+    const sidebarWrapper = document.querySelector('.app-sidebar-wrapper');
     const navbar = document.querySelector('.app-header.navbar');
     const main = document.querySelector('.app-main');
-    const footer = document.querySelector('footer.py-4');
-    const dashboardTable = document.querySelector('#customerTable');
-
-    if (!sidebar || !navbar || !main || !dashboardTable || !footer) return;
+    const footer = document.querySelector('footer');
 
     const sidebarWidth = 250;
-    const sidebarHidden = sidebar.style.transform === 'translateX(-100%)';
+    const sidebarHidden = sidebarWrapper.style.transform === 'translateX(-100%)';
+
+    // Your tables & containers
+    const customerTable = document.querySelector('#customerTable');
+    const customerContainer = customerTable?.closest('.container-fluid');
+
+    const projectTable = document.querySelector('#projectsTable');
+    const projectContainer = projectTable?.closest('.container-fluid');
+
+    const aboutTable = document.querySelector('#aboutTable');
+    const aboutContainer = aboutTable?.closest('.container-fluid');
+
+    const loyaltyTable = document.querySelector('#loyaltyTable');
+    const loyaltyContainer = loyaltyTable?.closest('.container-fluid');
+    
+    const sectorTable = document.querySelector('#sectorTable');
+    const sectorContainer = sectorTable?.closest('.container-fluid');
+
+    const reasonTable = document.querySelector('#reasonTable');
+    const reasonContainer = reasonTable?.closest('.container-fluid');
+
+    const workflowTable = document.querySelector('#workflowTable');
+    const workflowContainer = workflowTable?.closest('.container-fluid');
+
+    const featureTable = document.querySelector('#featureTable');
+    const featureContainer = featureTable?.closest('.container-fluid');
+
+    const officeTable = document.querySelector('#officeTable');
+    const officeContainer = officeTable?.closest('.container-fluid');
+
+    const messageTable = document.querySelector('#messageTable');
+    const messageContainer = messageTable?.closest('.container-fluid');
+
 
     if (sidebarHidden) {
       // Show sidebar
-      sidebar.style.transform = 'translateX(0)';
-      sidebar.style.transition = 'transform 0.3s ease-in-out';
+      sidebarWrapper.style.transform = 'translateX(0)';
 
       navbar.style.marginLeft = sidebarWidth + 'px';
-      navbar.style.padding = '1rem';
-
       main.style.marginLeft = sidebarWidth + 'px';
-      main.style.padding = '1rem';
-      main.style.transition = 'margin-left 0.3s ease-in-out, padding 0.3s ease-in-out';
-
       footer.style.marginLeft = sidebarWidth + 'px';
-      footer.style.padding = '1rem';
-      footer.style.position = 'fixed';
-      footer.style.bottom = '0';
-      footer.style.left = '0';
-      footer.style.width = `calc(100% - ${sidebarWidth}px)`;
-      footer.style.transition = 'margin-left 0.3s ease-in-out, width 0.3s ease-in-out';
 
-      dashboardTable.style.width = 'auto';
+      navbar.style.width = `calc(100% - ${sidebarWidth}px)`;
+      main.style.width = `calc(100% - ${sidebarWidth}px)`;
+      footer.style.width = `calc(100% - ${sidebarWidth}px)`;
+
+      if (customerContainer) customerContainer.style.width = `calc(100% - ${sidebarWidth}px)`;
+      if (customerTable) customerTable.style.width = '100%';
+
+      if (projectContainer) projectContainer.style.width = `calc(100% - ${sidebarWidth}px)`;
+      if (projectTable) projectTable.style.width = '100%';
+
+      if (aboutContainer) aboutContainer.style.width = `calc(100% - ${sidebarWidth}px)`;
+      if (aboutTable) aboutTable.style.width = '100%';
+
+      if (loyaltyContainer) loyaltyContainer.style.width = `calc(100% - ${sidebarWidth}px)`;
+      if (loyaltyTable) loyaltyTable.style.width = '100%';
+      
+      if (sectorContainer) sectorContainer.style.width = `calc(100% - ${sidebarWidth}px)`;
+      if (sectorTable) sectorTable.style.width = '100%';
+
+      if (reasonContainer) reasonContainer.style.width = `calc(100% - ${sidebarWidth}px)`;
+      if (reasonTable) reasonTable.style.width = '100%';
+
+      if (workflowContainer) workflowContainer.style.width = `calc(100% - ${sidebarWidth}px)`;
+      if (workflowTable) workflowTable.style.width = '100%';
+
+      if (featureContainer) featureContainer.style.width = `calc(100% - ${sidebarWidth}px)`;
+      if (featureTable) featureTable.style.width = '100%';
+
+      if (officeContainer) officeContainer.style.width = `calc(100% - ${sidebarWidth}px)`;
+      if (officeTable) officeTable.style.width = '100%';
+
+      if(messageContainer) messageContainer.style.width = `calc(100% - ${sidebarWidth}px)`;
+      if(messageTable) messageTable.style.width = '100%';
+
     } else {
       // Hide sidebar
-      sidebar.style.transform = 'translateX(-100%)';
-      sidebar.style.transition = 'transform 0.3s ease-in-out';
+      sidebarWrapper.style.transform = 'translateX(-100%)';
 
       navbar.style.marginLeft = '0';
-      navbar.style.padding = '0.5rem 1rem';
-
       main.style.marginLeft = '0';
-      main.style.padding = '1rem';
-      main.style.transition = 'margin-left 0.3s ease-in-out, padding 0.3s ease-in-out';
-
       footer.style.marginLeft = '0';
-      footer.style.padding = '1rem';
-      footer.style.position = 'fixed';
-      footer.style.bottom = '0';
-      footer.style.left = '0';
-      footer.style.width = '100%';
-      footer.style.transition = 'margin-left 0.3s ease-in-out, width 0.3s ease-in-out';
 
-      dashboardTable.style.width = '100%';
+      navbar.style.width = '100%';
+      main.style.width = '100%';
+      footer.style.width = '100%';
+
+      if (customerContainer) customerContainer.style.width = '100%';
+      if (customerTable) customerTable.style.width = '100%';
+
+      if (projectContainer) projectContainer.style.width = '100%';
+      if (projectTable) projectTable.style.width = '100%';
+
+      if (aboutContainer) aboutContainer.style.width = '100%';
+      if (aboutTable) aboutTable.style.width = '100%';
+
+      if (loyaltyContainer) loyaltyContainer.style.width = '100%';
+      if (loyaltyTable) loyaltyTable.style.width = '100%';
+      
+      if (sectorContainer) sectorContainer.style.width = '100%';
+      if (sectorTable) sectorTable.style.width = '100%';
+
+      if (reasonContainer) reasonContainer.style.width = '100%';
+      if (reasonTable) reasonTable.style.width = '100%';
+
+      if (workflowContainer) workflowContainer.style.width = '100%';
+      if (workflowTable) workflowTable.style.width = '100%';
+
+      if (featureContainer) featureContainer.style.width = '100%';
+      if (featureTable) featureTable.style.width = '100%';
+
+      if (officeContainer) officeContainer.style.width = '100%';
+      if (officeTable) officeTable.style.width = '100%';
+
+      if(messageContainer) messageContainer.style.width = '100%';
+      if(messageTable) messageTable.style.width = '100%';
     }
   });
 });
+
 
 
     });

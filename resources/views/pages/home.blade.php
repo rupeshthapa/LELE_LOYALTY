@@ -6,7 +6,7 @@
       <div class="col-md-12 col-sm-12">
         <div class="home-info">
           <div class="image-container">
-            <img id="slide-image" src="{{ asset('admin/dist/assets/img/customerloyalty.png') }}" alt="Customer Loyalty" class="slide-image" height="160rem">
+            <img id="slide-image" src="{{ asset('storage/customerloyalty.png') }}" alt="Customer Loyalty" class="slide-image" height="160rem">
           </div>
           <h1>"Grow your business with <br> customer loyalty"</h1>
           <div class="home-text">

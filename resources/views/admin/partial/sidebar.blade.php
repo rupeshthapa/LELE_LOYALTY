@@ -1,9 +1,10 @@
-<aside class="app-sidebar bg-body-secondary shadow d-flex flex-column" data-bs-theme="dark"
-       style="position: fixed; top: 0; left: 0; height: 100vh; width: 250px; overflow: hidden; z-index: 1030;">
+<div class="app-sidebar-wrapper" style="position: fixed; top: 0; left: 0; height: 100vh; width: 250px; z-index: 1030; transition: transform 0.3s ease-in-out;">
+  <aside class="app-sidebar bg-body-secondary shadow d-flex flex-column" data-bs-theme="dark"
+         style="height: 100vh; width: 250px; overflow: hidden;">
     <!--begin::Sidebar Brand-->
     <div class="sidebar-brand">
         <a href="{{ route('admin.dashboard.index') }}" class="brand-link">
-            <img src="{{ asset('admin/dist/assets/img/customerloyalty.png') }}" alt="Lele Logo"
+            <img src="{{ asset('storage/customerloyalty.png') }}" alt="Lele Logo"
                 class="opacity-75 shadow" style="height: 100px; width: 100%;">
         </a>
     </div>
@@ -83,3 +84,4 @@
 
     <!--end::Sidebar Footer-->
 </aside>
+</div>

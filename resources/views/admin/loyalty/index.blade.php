@@ -9,7 +9,7 @@
 
     <div class="app-content-header">
                 <!--begin::Container-->
-                <div class="container-fluid">
+                <div class="container-fluid my-5">
                     <!--begin::Row-->
                     <div class="row">
                         <div class="col-sm-6">
@@ -25,12 +25,8 @@
                     <!--end::Row-->
                 </div>
                 <!--end::Container-->
-            </div>
-
-
-    <div class="container-fluid my-5">
-        <div class="row">
-            <div class="col-lg-12">
+            
+        
                 <button class="btn btn-primary d-flex align-items-center mb-4" data-bs-toggle="modal"
                     data-bs-target="#addLoyaltyModal">
                     <i class="fas fa-circle-plus me-2"></i>
@@ -38,7 +34,7 @@
                 </button>
 
                 
-                    <table id="loyaltyTable" class="table table-bordered table-striped table-sm">
+                    <table id="loyaltyTable" class="table table-bordered table-striped">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -49,8 +45,7 @@
                             </tr>
                         </thead>
                     </table>
-            </div>
-        </div>
+            
     </div>
 
 @endsection
@@ -127,10 +122,7 @@
                 // toastr.success(response.message);
 
 
-                Toast.fire({
-                    icon: "success",
-                    title: response.message
-                });
+                 showToast('success', response.message);
 
 
                 $('#createLoyaltyForm')[0].reset();
@@ -167,12 +159,7 @@
                         $('#image_id').addClass('is-invalid');
                     }
                 } else {
-                    let errorMsg = xhr.responseJSON?.message || 'Something went wrong.';
-                    
-                    Toast.fire({
-                    icon: "error",
-                    title: errorMsg
-                });
+                    showToast('error', xhr.responseJSON?.message || 'An error occurred.');
                     
                 }
             }
@@ -220,10 +207,8 @@
                         contentType: false,
                         processData: false,
                         success: function(response){
-                            Toast.fire({
-                                icon: "success",
-                                title: response.message
-                            });
+                            showToast('success', response.message);
+                            
                             $('#editLoyaltyModal').modal('hide');
                             $('#loyaltyTable').DataTable().ajax.reload();
                         },
@@ -244,11 +229,7 @@
        
 
                         } else {
-                            let errorMsg = xhr.responseJSON?.message || 'Something went wrong';
-                            Toast.fire({
-                            icon: "error",
-                            title: errorMsg,
-                        });
+                            showToast('error', xhr.responseJSON?.message || 'An error occurred.');
                         }
                     }
 

@@ -9,7 +9,7 @@
 
             <div class="app-content-header">
                 <!--begin::Container-->
-                <div class="container-fluid">
+                <div class="container-fluid my-5">
                     <!--begin::Row-->
                     <div class="row">
                         <div class="col-sm-6">
@@ -25,20 +25,15 @@
                     <!--end::Row-->
                 </div>
                 <!--end::Container-->
-            </div>
 
-
-
-<div class="container-fluid my-5">
-    <div class="row">
-        <div class="col-lg-12">
+   
             <button class="btn btn-primary d-flex align-items-center mb-4" data-bs-toggle="modal" data-bs-target="#addProjectModal">
                 <i class="fas fa-circle-plus me-2"></i>
                 Add New Project
             </button>
-
             
-                <table id="projectsTable" class="table table-bordered table-striped table-sm">
+                <table id="projectsTable" class="table table-bordered table-striped">
+
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -51,8 +46,7 @@
                     </thead>
                 </table>
             
-        </div>
-    </div>
+       
 </div>
 @endsection
 
@@ -108,10 +102,7 @@ $(document).ready(function(){
             processData: false,
             contentType: false,
             success: function(response){
-                Toast.fire({
-                    icon: "success",
-                    title: response.message
-                });
+                showToast('success', response.message);
 
                 $('#createProjectForm')[0].reset();
                 const modalEl = document.getElementById('addProjectModal');
@@ -141,11 +132,7 @@ $(document).ready(function(){
                         $('#image_id').addClass('is-invalid');
                     }
                 } else {
-                    let errorMsg = xhr.responseJSON?.message || 'Something went wrong';
-                    Toast.fire({
-                    icon: "error",
-                    title: errorMsg,
-                });
+                    showToast('error', xhr.responseJSON?.message || 'An error occurred.');
                 }
             }
         });
@@ -194,10 +181,8 @@ $(document).ready(function(){
         contentType: false,
         processData: false,
         success: function(response){
-            Toast.fire({
-                    icon: "success",
-                    title: response.message
-                });
+             showToast('success', response.message);
+
             $('#editProjectModal').modal('hide');
             $('#projectsTable').DataTable().ajax.reload();
         },
@@ -220,11 +205,7 @@ $(document).ready(function(){
                 $('#edit_image_id').addClass('is-invalid');
             }
         } else {
-            let errorMsg = xhr.responseJSON?.message || 'Something went wrong';
-            Toast.fire({
-                    icon: "error",
-                    title: errorMsg,
-                });
+            showToast('error', xhr.responseJSON?.message || 'An error occurred.');
         }
     }
 

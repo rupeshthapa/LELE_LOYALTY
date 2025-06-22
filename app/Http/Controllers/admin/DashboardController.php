@@ -32,19 +32,20 @@ class DashboardController extends Controller
     return view('admin.dashboard', compact('totalProjects', 'totalSectors', 'totalFeatures', 'totalWorkflows'));
 }
 
-    public function customerContactData() {
-    $customer = Contact::get();
+    public function customerContactData()
+{
+    $query = Contact::orderBy('id', 'desc');
 
-    return DataTables::of($customer)
-    ->addIndexColumn()
+    return DataTables::of($query) // no get()
+        ->addIndexColumn()
         ->addColumn('status', function ($data) {
-               $daysDiff = Carbon::parse($data->created_at)->diffInDays(Carbon::now());
-    $status = $daysDiff <= 1 ? 'New' : 'Old';
-    $class = $status === 'New' ? 'badge bg-success' : 'badge bg-danger';
+            $daysDiff = Carbon::parse($data->created_at)->diffInDays(Carbon::now());
+            $status = $daysDiff <= 1 ? 'New' : 'Old';
+            $class = $status === 'New' ? 'badge bg-success' : 'badge bg-danger';
 
-    return "<span class='{$class}'>{$status}</span>";
+            return "<span class='{$class}'>{$status}</span>";
         })
-        ->rawColumns(['status']) // Let HTML render properly
+        ->rawColumns(['status'])
         ->make(true);
 }
 

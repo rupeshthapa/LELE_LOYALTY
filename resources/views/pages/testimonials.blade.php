@@ -16,7 +16,7 @@
                          <div class="item">
                              <h3>"Their ERP system streamlined our operations, and the new loyalty program they developed has helped us build stronger customer relationships. The team’s expertise in web and mobile solutions is unmatched."</h3>
                              <div class="testimonial-item">
-                                 <img src="{{asset('images/userdisplay.png')}}" class="img-responsive" alt="user">
+                                 <img src="{{asset('storage/userdisplay.png')}}" class="img-responsive" alt="user">
                                  <h4>Binayak Thapa</h4>
                              </div>
                          </div>
@@ -24,7 +24,7 @@
                          <div class="item">
                              <h3>"This company helped us create a seamless app UI that’s user-friendly and engaging. Their loyalty program has been a fantastic addition, enabling us to reward our customers effectively."</h3>
                              <div class="testimonial-item">
-                                 <img src="{{asset('images/userdisplay.png')}}" class="img-responsive" alt="user">
+                                 <img src="{{asset('storage/userdisplay.png')}}" class="img-responsive" alt="user">
                                  <h4>Rajesh Sharma</h4>
                              </div>
                          </div>
@@ -32,7 +32,7 @@
                          <div class="item">
                              <h3>"Our partnership with this company has been incredibly valuable. Their ERP solutions improved our efficiency, and the loyalty program they implemented has boosted customer retention."</h3>
                              <div class="testimonial-item">
-                                 <img src="{{asset('images/userdisplay.png')}}" class="img-responsive" alt="user">
+                                 <img src="{{asset('storage/userdisplay.png')}}" class="img-responsive" alt="user">
                                  <h4>Neeta Kc</h4>
                              </div>
                          </div>

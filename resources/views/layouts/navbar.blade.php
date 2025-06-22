@@ -28,7 +28,7 @@
             <div class="navbar-header">
 
                 <a href="/" class="navbar-brand">
-                    <img src="{{asset('admin/dist/assets/img/customerloyalty.png')}}" alt="LELE LOYALTY">
+                    <img src="{{asset('storage/customerloyalty.png')}}" alt="LELE LOYALTY">
                 </a>
 
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" >
@@ -41,7 +41,7 @@
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav" style="margin-top:10px; display:inline">
                     <li> <a href="/" class="navbar-logo">
-                        <img src="{{asset('admin/dist/assets/img/customerloyalty.png')}}" alt="LELE LOYALTY" id="nav-img">
+                        <img src="{{asset('storage/customerloyalty.png')}}" alt="LELE LOYALTY" id="nav-img">
                     </a></li>
                     <li><a href="#home" class="smoothScroll">Home</a></li>
                     <li><a href="#about" class="smoothScroll">About Us</a></li>

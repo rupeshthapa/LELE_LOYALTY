@@ -10,7 +10,7 @@
 
     <div class="app-content-header">
                 <!--begin::Container-->
-                <div class="container-fluid">
+                <div class="container-fluid my-5">
                     <!--begin::Row-->
                     <div class="row">
                         <div class="col-sm-6">
@@ -26,19 +26,15 @@
                     <!--end::Row-->
                 </div>
                 <!--end::Container-->
-            </div>
-
-
-    <div class="container-fluid my-5">
-    <div class="row">
-        <div class="col-lg-12">
+            
+    
             <button class="btn btn-primary d-flex align-items-center mb-4" data-bs-toggle="modal"
                 data-bs-target="#addOfficeModal">
                 <i class="fas fa-circle-plus me-2"></i>
                 Add New Information
             </button>
 
-            <table id="officeTable" class="table table-bordered table-striped table-sm">
+            <table id="officeTable" class="table table-bordered table-striped">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -49,8 +45,7 @@
                     </tr>
                 </thead>
             </table>
-        </div>
-    </div>
+        
 </div>
 
 
@@ -121,10 +116,7 @@
                     contentType: false,
 
                     success: function(response){
-                       Toast.fire({
-                            icon: "success",
-                            title: response.message
-                        });
+                       showToast('success', response.message);
                         $('#createOfficeForm')[0].reset();
 
                         const modalEl = document.getElementById('addOfficeModal');
@@ -159,11 +151,7 @@
 
                         }
                         else{
-                            let errorMsg = xhr.responseJSON?.message || 'Something went wrong.';
-                            Toast.fire({
-                            icon: "error",
-                            title: "Something went wrong!",
-                        });
+                            showToast('error', xhr.responseJSON?.message || 'An error occurred.');
                         }
                     }
                 });
@@ -207,10 +195,7 @@
                     processData: false,
 
                     success:function(response){
-                        Toast.fire({
-                            icon: "success",
-                            title: response.message
-                        });
+                        showToast('success', response.message);
                         $('#editOfficeModal').modal('hide'); // use modal('hide') instead of .hide()
                         $('#officeTable').DataTable().ajax.reload();
                     },
@@ -231,10 +216,7 @@
                             }
                         }
                         else{
-                            Toast.fire({
-                            icon: "error",
-                            title: "Something went wrong!",
-                        });
+                            showToast('error', xhr.responseJSON?.message || 'An error occurred.');
                         }
                     }
                 });

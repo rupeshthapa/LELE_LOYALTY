@@ -2,57 +2,14 @@
 
 @section('title', 'Messages')
 @push('styles')
-     <style>
-        .breadcrumb-custom {
-            background: #f0f4f8;
-            padding: 0.9rem 1.5rem;
-            border-radius: 0.75rem;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            font-size: 1rem;
-            font-weight: 600;
-            color: #343a40;
-        }
 
-        .breadcrumb-custom .breadcrumb-item+.breadcrumb-item::before {
-            content: "›";
-            padding: 0 0.75rem;
-            color: #6c757d;
-            font-weight: 700;
-            font-size: 1.1rem;
-            vertical-align: middle;
-        }
-
-        .breadcrumb-custom .breadcrumb-item a {
-            color: #0d6efd;
-            text-decoration: none;
-            transition: color 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-        }
-
-        .breadcrumb-custom .breadcrumb-item a:hover {
-            color: #0a58ca;
-            text-decoration: underline;
-        }
-
-        .breadcrumb-custom .breadcrumb-item.active {
-            color: #495057;
-            display: inline-flex;
-            align-items: center;
-        }
-
-        .breadcrumb-custom i {
-            color: #0d6efd;
-            margin-right: 6px;
-        }
-    </style>
 @endpush
 @section('content')
    
 
     <div class="app-content-header">
                 <!--begin::Container-->
-                <div class="container-fluid">
+                <div class="container-fluid my-5">
                     <!--begin::Row-->
                     <div class="row">
                         <div class="col-sm-6">
@@ -68,18 +25,13 @@
                     <!--end::Row-->
                 </div>
                 <!--end::Container-->
-            </div>
-
-    <div class="container-fluid my-5">
-        <div class="row">
-            <div class="col-lg-10 offset-lg-1">
+            
                 <button class="btn btn-primary d-flex align-items-center mb-4 mark-all-read">
                     <i class="fas fa-check-circle me-2"></i>
                     Mark As Read
                 </button>
 
-                <div class="table-responsive">
-                    <table id="messageTable" class="table table-bordered table-striped table-sm">
+                    <table id="messageTable" class="table table-bordered table-striped " width="100%">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -89,9 +41,8 @@
                             </tr>
                         </thead>
                     </table>
-                </div>
-            </div>
-        </div>
+                
+        
     </div>
 @endsection
 @push('scripts')

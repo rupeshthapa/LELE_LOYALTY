@@ -43,10 +43,16 @@ rel="stylesheet"
                     </div>
     
 
-                    <div class="mb-4">
-                        <label for="loginPassword" class="form-label">Password</label>
-                        <input type="password" id="loginPassword" class="form-control" name="password" required />
-                    </div>
+                    <div class="mb-4 position-relative">
+    <label for="loginPassword" class="form-label">Password</label>
+    <input type="password" id="loginPassword" class="form-control pe-5" name="password" required />
+    
+    <i class="fa-solid fa-eye-slash position-absolute" id="togglePassword" 
+       style="top: 75%; right: 15px; transform: translateY(-50%); cursor: pointer;"></i>
+</div>
+
+
+
     
                     <div class="row mb-4">
                         <div class="col-md-6 d-flex justify-content-center">
@@ -70,6 +76,22 @@ rel="stylesheet"
         </div>
     </div>
     
-    
+    <script>
+document.getElementById('togglePassword').addEventListener('click', function () {
+    const passwordInput = document.getElementById('loginPassword');
+    const icon = this;
+
+    if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        icon.classList.remove('fa-eye-slash');
+        icon.classList.add('fa-eye');
+    } else {
+        passwordInput.type = 'password';
+        icon.classList.remove('fa-eye');
+        icon.classList.add('fa-eye-slash');
+    }
+});
+</script>
+
 </body>
 </html>

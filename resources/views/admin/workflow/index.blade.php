@@ -10,7 +10,7 @@
 
     <div class="app-content-header">
                 <!--begin::Container-->
-                <div class="container-fluid">
+                <div class="container-fluid my-5">
                     <!--begin::Row-->
                     <div class="row">
                         <div class="col-sm-6">
@@ -26,11 +26,7 @@
                     <!--end::Row-->
                 </div>
                 <!--end::Container-->
-            </div>
-
-    <div class="container-fluid my-5">
-        <div class="row">
-            <div class="col-lg-12">
+        
                 <button class="btn btn-primary d-flex align-items-center mb-4" data-bs-toggle="modal"
                     data-bs-target="#addWorkflowModal">
                     <i class="fas fa-circle-plus me-2"></i>
@@ -38,7 +34,7 @@
                 </button>
 
                 
-                    <table id="workflowTable" class="table table-bordered table-striped table-sm">
+                    <table id="workflowTable" class="table table-bordered table-striped">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -49,8 +45,7 @@
                             </tr>
                         </thead>
                     </table>
-            </div>
-        </div>
+           
     </div>
 @endsection
 
@@ -97,10 +92,7 @@
                 processData: false,
                 contentType: false,
                 success: function(response){
-                    Toast.fire({
-                    icon: "success",
-                    title: response.message
-                });
+                    showToast('success', response.message);
                     $('#createWorkflowForm')[0].reset();
 
                     const modalEl = document.getElementById('addWorkflowModal');
@@ -135,10 +127,7 @@
                         }
                     }
                     else{
-                        Toast.fire({
-                        icon: "error",
-                        title: "Something went wrong!",
-                    });
+                        showToast('error', xhr.responseJSON?.message || 'An error occurred.');
                     }
                 }
             });
@@ -182,10 +171,8 @@
                 processData: false,
 
                 success: function(response){
-                        Toast.fire({
-                        icon: "success",
-                        title: response.message
-                    });
+                        showToast('success', response.message);
+
                         $('#editWorkflowModal').modal('hide');
                         $('#workflowTable').DataTable().ajax.reload();
                 },
@@ -202,10 +189,7 @@
                         }
                     }
                     else{
-                        Toast.fire({
-                            icon: "error",
-                            title: "Something went wrong!",
-                        });
+                        showToast('error', xhr.responseJSON?.message || 'An error occurred.');
                     }
                 }
             });

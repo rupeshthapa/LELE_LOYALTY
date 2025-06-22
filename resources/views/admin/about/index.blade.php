@@ -9,7 +9,7 @@
 
     <div class="app-content-header">
                 <!--begin::Container-->
-                <div class="container-fluid">
+                <div class="container-fluid my-5">
                     <!--begin::Row-->
                     <div class="row">
                         <div class="col-sm-6">
@@ -25,12 +25,8 @@
                     <!--end::Row-->
                 </div>
                 <!--end::Container-->
-            </div>
-
-
-    <div class="container-fluid my-5">
-        <div class="row">
-            <div class="col-lg-12">
+        
+        
                 <button class="btn btn-primary d-flex align-items-center mb-4" data-bs-toggle="modal"
                     data-bs-target="#addAboutModal">
                     <i class="fas fa-circle-plus me-2"></i>
@@ -38,7 +34,7 @@
                 </button>
 
                 
-                    <table id="aboutTable" class="table table-bordered table-striped table-sm">
+                    <table id="aboutTable" class="table table-bordered table-striped">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -50,8 +46,7 @@
                         </thead>
                     </table>
                 
-            </div>
-        </div>
+            
     </div>
 @endsection
 
@@ -122,10 +117,7 @@
 
                                     success: function(response) {
 
-                                        Toast.fire({
-                                        icon: "success",
-                                        title: response.message
-                                    });
+                                         showToast('success', response.message);
                                         $('#createAboutForm')[0].reset();
 
                                         const modalEl = document.getElementById('addAboutModal');
@@ -163,11 +155,7 @@
                                             $('#image_id').addClass('is-invalid');
                                         }
                                     } else {
-                                        let errorMsg = xhr.responseJSON?.message || 'Something went wrong';
-                                        Toast.fire({
-                                        icon: "error",
-                                        title: errorMsg,
-                                    });
+                                        showToast('error', xhr.responseJSON?.message || 'An error occurred.');
                                     }
                                 }
                             });
@@ -216,10 +204,8 @@
                         contentType: false,
                         processData: false,
                         success: function(response){
-                            Toast.fire({
-                                icon: "success",
-                                title: response.message
-                            });
+                            showToast('success', response.message);
+
                             $('#editAboutModal').modal('hide');
                             $('#aboutTable').DataTable().ajax.reload();
                         },
@@ -238,11 +224,7 @@
                         }
 
                     } else {
-                        let errorMsg = xhr.responseJSON?.message || 'Something went wrong';
-                        Toast.fire({
-                            icon: "error",
-                            title: errorMsg,
-                        });
+                        showToast('error', xhr.responseJSON?.message || 'An error occurred.');
                     }
                 }
 

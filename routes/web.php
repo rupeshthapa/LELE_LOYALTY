@@ -19,12 +19,12 @@ use Illuminate\Support\Facades\Route;
 
 
 
-    // Route::get('/', [MainController::class, 'main'])->name('main');
+    Route::get('/', [MainController::class, 'main'])->name('main');
 
 
-    Route::get('/', function(){
-        return view('dashboardCopy');
-    });
+    // Route::get('/', function(){
+    //     return view('dashboardCopy');
+    // });
 
 
 

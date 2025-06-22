@@ -10,7 +10,7 @@
 
     <div class="app-content-header">
                 <!--begin::Container-->
-                <div class="container-fluid">
+                <div class="container-fluid my-5">
                     <!--begin::Row-->
                     <div class="row">
                         <div class="col-sm-6">
@@ -26,12 +26,8 @@
                     <!--end::Row-->
                 </div>
                 <!--end::Container-->
-            </div>
-    
-
-    <div class="container-fluid my-5">
-        <div class="row">
-            <div class="col-lg-12">
+            
+       
                 <button class="btn btn-primary d-flex align-items-center mb-4" data-bs-toggle="modal"
                     data-bs-target="#addReasonModal">
                     <i class="fas fa-circle-plus me-2"></i>
@@ -39,7 +35,7 @@
                 </button>
 
                 
-                    <table id="reasonTable" class="table table-bordered table-striped table-sm">
+                    <table id="reasonTable" class="table table-bordered table-striped">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -50,8 +46,6 @@
                             </tr>
                         </thead>
                     </table>
-            </div>
-        </div>
     </div>
 
 @endsection
@@ -120,10 +114,7 @@
                     contentType: false,
 
                     success: function(response){
-                        Toast.fire({
-                            icon: "success",
-                            title: response.message
-                        });
+                        showToast('success', response.message);
                         $('#createReasonForm')[0].reset();
                         const modelEl = document.getElementById('addReasonModal');
                         const modal = bootstrap.Modal.getInstance(modelEl);
@@ -156,10 +147,7 @@
                             }
                         }
                         else{
-                            Toast.fire({
-                            icon: "error",
-                            title: "Something went wrong!",
-                        });
+                           showToast('error', xhr.responseJSON?.message || 'An error occurred.');
                         }
                     }
                 });
@@ -204,10 +192,7 @@
                     processData: false,
                     contentType: false,
                     success: function(response){
-                        Toast.fire({
-                            icon: "success",
-                            title: response.message
-                        });
+                        showToast('success', response.message);
                         $('#editReasonModal').modal('hide');
                         $('#reasonTable').DataTable().ajax.reload();
                     },
@@ -224,11 +209,7 @@
                             }
                         }
                         else{
-                            let errorMsg = xhr.responseJSON?.message || 'Something went wrong';
-                            Toast.fire({
-                            icon: "error",
-                            title: errorMsg,
-                        });
+                            showToast('error', xhr.responseJSON?.message || 'An error occurred.');
                         }
                     }
                 })

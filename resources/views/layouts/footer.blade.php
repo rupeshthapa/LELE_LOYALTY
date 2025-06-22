@@ -4,7 +4,7 @@
         <!-- Logo Section -->
         <div class="row logo-section">
             <div class="col-md-12 text-center">
-                <img src="{{ asset('images/customerloyalty.png') }}" alt="Logo" class="footer-logo">
+                <img src="{{ asset('storage/customerloyalty.png') }}" alt="Logo" class="footer-logo">
             </div>
         </div>
 

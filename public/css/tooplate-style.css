@@ -474,7 +474,7 @@ body {
   -----------------------------------------*/
 
   #home {
-    background: url('../images/homeimage.avif') no-repeat center center;
+    background: url('../storage/homeimage.avif') no-repeat center center;
     background-size: cover;
     vertical-align: middle;
     display: -webkit-box;

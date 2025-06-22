@@ -9,7 +9,7 @@
 
     <div class="app-content-header">
                 <!--begin::Container-->
-                <div class="container-fluid">
+                <div class="container-fluid my-5">
                     <!--begin::Row-->
                     <div class="row">
                         <div class="col-sm-6">
@@ -25,12 +25,8 @@
                     <!--end::Row-->
                 </div>
                 <!--end::Container-->
-            </div>
-
-
-    <div class="container-fluid my-5">
-        <div class="row">
-            <div class="col-lg-12">
+            
+        
                 <button class="btn btn-primary d-flex align-items-center mb-4" data-bs-toggle="modal"
                     data-bs-target="#addFeatureModal">
                     <i class="fas fa-circle-plus me-2"></i>
@@ -38,7 +34,7 @@
                 </button>
 
                 
-                    <table id="featureTable" class="table table-bordered table-striped table-sm ">
+                    <table id="featureTable" class="table table-bordered table-striped ">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -49,8 +45,7 @@
                             </tr>
                         </thead>
                     </table>
-            </div>
-        </div>
+           
     </div>
 
 @endsection
@@ -117,22 +112,6 @@
                 $('#image_class').val(imageClass); // update and trigger change if needed
                 });
 
- $('#feature_class').on('change', function () {
-      const featureClass = $(this).val();
-      let imageClass = '';
-
-      if (featureClass === 'rotate-class') {
-        imageClass = 'rotate';
-      } else if (featureClass === 'shake-class' || featureClass === 'shakehorizontal-class') {
-        imageClass = 'shake';
-      } else if (featureClass === 'scale-class' ) {
-        imageClass = 'scale';
-      }
-
-      $('#image_class').val(imageClass);
-      $('#image_class_hidden').val(imageClass); // Keep hidden input updated too
-    });
-
     // Handle form submit with AJAX
     $('#createFeatureForm').on('submit', function (e) {
       e.preventDefault();
@@ -155,10 +134,7 @@
         processData: false,
 
         success: function (response) {
-          Toast.fire({
-                    icon: "success",
-                    title: response.message
-                });
+          showToast('success', response.message);
 
           $('#createFeatureForm')[0].reset();
 
@@ -203,10 +179,7 @@
               $('#feature_image').addClass('is-invalid');
             }
           } else {
-            Toast.fire({
-                    icon: "error",
-                    title: "Something went wrong!",
-                });
+            showToast('error', xhr.responseJSON?.message || 'An error occurred.');
           }
         }
       });
@@ -280,10 +253,7 @@
                     contentType: false,
 
                     success: function(response){
-                        Toast.fire({
-                            icon: "success",
-                            title: response.message
-                        });
+                        showToast('success', response.message);
                         $('#editFeatureModal').modal('hide');
                         $('#featureTable').DataTable().ajax.reload();
                     },
@@ -313,11 +283,7 @@
                             }
                         }
                         else{
-                            let errorMsg = xhr.responseJSON?.message || 'Something went wrong';
-                            Toast.fire({
-                            icon: "error",
-                            title: "Something went wrong!",
-                        });
+                            showToast('error', xhr.responseJSON?.message || 'An error occurred.');
                         }
                     }
                 });

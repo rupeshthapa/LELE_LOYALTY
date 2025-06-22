@@ -9,7 +9,7 @@
 
     <div class="app-content-header">
                 <!--begin::Container-->
-                <div class="container-fluid">
+                <div class="container-fluid my-5">
                     <!--begin::Row-->
                     <div class="row">
                         <div class="col-sm-6">
@@ -25,11 +25,7 @@
                     <!--end::Row-->
                 </div>
                 <!--end::Container-->
-            </div>
-
-    <div class="container-fluid my-5">
-        <div class="row">
-            <div class="col-lg-12">
+        
                 <button class="btn btn-primary d-flex align-items-center mb-4" data-bs-toggle="modal"
                     data-bs-target="#addSectorModal">
                     <i class="fas fa-circle-plus me-2"></i>
@@ -37,7 +33,7 @@
                 </button>
 
                 
-                    <table id="sectorTable" class="table table-bordered table-striped table-sm">
+                    <table id="sectorTable" class="table table-bordered table-striped">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -47,8 +43,7 @@
                             </tr>
                         </thead>
                     </table>
-            </div>
-        </div>
+            
     </div>
 @endsection
 
@@ -117,10 +112,8 @@
                     contentType: false,
 
                     success: function(response){
-                        Toast.fire({
-                            icon: "success",
-                            title: response.message
-                        });
+                        showToast('success', response.message);
+
                         $('#createSectorForm')[0].reset();
                         $('#addSectorModal').modal('hide');
                         $('#sectorTable').DataTable().ajax.reload();
@@ -139,10 +132,7 @@
                             }
                         }
                         else{
-                            Toast.fire({
-                            icon: "error",
-                            title: "Something went wrong!",
-                        });
+                            showToast('error', xhr.responseJSON?.message || 'An error occurred.');
                         }
                     }
                 })
@@ -188,10 +178,8 @@
                     contentType: false,
 
                     success: function(response){
-                        Toast.fire({
-                            icon: "success",
-                            title: response.message
-                        });
+                        showToast('success', response.message);
+
                         $('#editSectorModal').modal('hide');
                         $('#sectorTable').DataTable().ajax.reload();
                     }, error: function(xhr){
@@ -204,10 +192,7 @@
 
                         }
                         else{
-                            Toast.fire({
-                            icon: "error",
-                            title: "Something went wrong!",
-                        });
+                            showToast('error', xhr.responseJSON?.message || 'An error occurred.');
                         }
                     }
 
