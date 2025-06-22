@@ -26,7 +26,7 @@ class ContactController extends Controller
 
             return response()->json([
                 'status' => 'success',
-                'message' => 'Details sent successfully! Team will contact you ASAP..!!',
+                'message' => 'Details sent successfully!',
             ]);
 
 

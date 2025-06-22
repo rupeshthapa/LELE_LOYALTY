@@ -55,6 +55,7 @@
 <script src="{{ asset('js/smoothscroll.js') }}"></script>
 <script src="{{ asset('js/custom.js') }}"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="{{ asset('js/admin/sweetalert2.min.js') }}"></script>
 
 <script>
     AOS.init();
@@ -76,4 +77,22 @@
             button.style.display = 'none';
         }
     };
+</script>
+
+<script>
+    function showToast(icon, title) {
+    Swal.fire({
+        toast: true,
+        position: 'top-end',
+        icon: icon,  // 'success', 'error', 'warning', 'info', 'question'
+        title: title,
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+    });
+}
 </script>
