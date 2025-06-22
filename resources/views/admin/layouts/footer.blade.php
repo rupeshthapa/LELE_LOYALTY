@@ -1,14 +1,15 @@
-<footer class="py-4 bg-light mt-auto" style="margin-left: 250px; padding: 1rem; position: fixed; bottom: 0; width: calc(100% - 250px); z-index: 1030;">
-  <div class="container-fluid px-4">
-    <div class="d-flex align-items-center justify-content-between small">
-      <div class="text-muted" style="font-weight: bold;">Copyright &copy; <strong>Lele Ventures</strong> 2024</div>
-      <div>
-        <a href="#">Privacy Policy</a>
-        &middot;
-        <a href="#">Terms &amp; Conditions</a>
-      </div>
+<footer class="py-4 bg-light mt-auto"
+    style="margin-left: 250px; padding: 1rem; position: fixed; bottom: 0; width: calc(100% - 250px); z-index: 1030;">
+    <div class="container-fluid px-4">
+        <div class="d-flex align-items-center justify-content-between small">
+            <div class="text-muted" style="font-weight: bold;">Copyright &copy; <strong>Lele Ventures</strong> 2024</div>
+            <div>
+                <a href="#">Privacy Policy</a>
+                &middot;
+                <a href="#">Terms &amp; Conditions</a>
+            </div>
+        </div>
     </div>
-  </div>
 </footer>
 
 
@@ -39,7 +40,7 @@
 
 
 <!-- AdminLTE -->
-<script src="{{asset('admin/dist/js/adminlte.js')}}"></script>
+<script src="{{ asset('admin/dist/js/adminlte.js') }}"></script>
 
 
 
@@ -49,20 +50,18 @@
 
 <script>
     function showToast(icon, title) {
-    Swal.fire({
-        toast: true,
-        position: 'top-end',
-        icon: icon,  // 'success', 'error', 'warning', 'info', 'question'
-        title: title,
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-            toast.addEventListener('mouseenter', Swal.stopTimer)
-            toast.addEventListener('mouseleave', Swal.resumeTimer)
-        }
-    });
-}
+        Swal.fire({
+            toast: true,
+            position: 'top-end',
+            icon: icon, // 'success', 'error', 'warning', 'info', 'question'
+            title: title,
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        });
+    }
 </script>
-
-

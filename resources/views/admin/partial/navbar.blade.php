@@ -25,61 +25,62 @@
             <li class="nav-item dropdown">
                 <a class="nav-link" data-bs-toggle="dropdown" href="#">
                     <i class="bi bi-chat-text"></i>
-                    @if($count > 0)
-                    <span class="navbar-badge badge text-bg-danger" id="unreadBadge">{{ $count }}</span>
+                    @if ($count > 0)
+                        <span class="navbar-badge badge text-bg-danger" id="unreadBadge">{{ $count }}</span>
                     @endif
                 </a>
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-2 shadow-lg rounded-3">
                     <!-- Notifications -->
                     @forelse ($notifications as $notification)
-                    
-                       @if ($notification->is_read == 'unread')
-    <div class="dropdown-item d-flex align-items-start mb-2 border-bottom pb-2 rounded bg-secondary bg-opacity-50">
-        <div class="flex-grow-1">
+                        @if ($notification->is_read == 'unread')
+                            <div
+                                class="dropdown-item d-flex align-items-start mb-2 border-bottom pb-2 rounded bg-secondary bg-opacity-50">
+                                <div class="flex-grow-1">
 
-            <div class="d-flex justify-content-between align-items-center mb-1">
-                <h6 class="mb-0 fw-semibold text-dark">
-                    {{ $notification->name }}
-                </h6>
-                <span class="text-warning fs-7">
-                    <i class="bi bi-star-fill"></i>
-                </span>
-            </div>
+                                    <div class="d-flex justify-content-between align-items-center mb-1">
+                                        <h6 class="mb-0 fw-semibold text-dark">
+                                            {{ $notification->name }}
+                                        </h6>
+                                        <span class="text-warning fs-7">
+                                            <i class="bi bi-star-fill"></i>
+                                        </span>
+                                    </div>
 
-            <p class="mb-1 small text-dark">
-                {{ $notification->message }}
-            </p>
+                                    <p class="mb-1 small text-dark">
+                                        {{ $notification->message }}
+                                    </p>
 
-            <div class="d-flex align-items-center small text-secondary">
-                <i class="bi bi-clock-fill me-1"></i>
-                <span class="mb-1 small text-dark">{{ \Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</span>
-            </div>
-        </div>
-    </div>
-@elseif($notification->is_read == 'read')
-    <div class="dropdown-item d-flex align-items-start mb-2 border-bottom pb-2 rounded">
-        <div class="flex-grow-1">
+                                    <div class="d-flex align-items-center small text-secondary">
+                                        <i class="bi bi-clock-fill me-1"></i>
+                                        <span
+                                            class="mb-1 small text-dark">{{ \Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        @elseif($notification->is_read == 'read')
+                            <div class="dropdown-item d-flex align-items-start mb-2 border-bottom pb-2 rounded">
+                                <div class="flex-grow-1">
 
-            <div class="d-flex justify-content-between align-items-center mb-1">
-                <h6 class="mb-0 fw-semibold text-muted">
-                    {{ $notification->name }}
-                </h6>
-                <span class="text-warning fs-7">
-                    <i class="bi bi-star-fill"></i>
-                </span>
-            </div>
+                                    <div class="d-flex justify-content-between align-items-center mb-1">
+                                        <h6 class="mb-0 fw-semibold text-muted">
+                                            {{ $notification->name }}
+                                        </h6>
+                                        <span class="text-warning fs-7">
+                                            <i class="bi bi-star-fill"></i>
+                                        </span>
+                                    </div>
 
-            <p class="mb-1 small text-muted">
-                {{ $notification->message }}
-            </p>
+                                    <p class="mb-1 small text-muted">
+                                        {{ $notification->message }}
+                                    </p>
 
-            <div class="d-flex align-items-center small text-secondary">
-                <i class="bi bi-clock-fill me-1"></i>
-                <span>{{ \Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</span>
-            </div>
-        </div>
-    </div>
-@endif
+                                    <div class="d-flex align-items-center small text-secondary">
+                                        <i class="bi bi-clock-fill me-1"></i>
+                                        <span>{{ \Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
 
                     @empty
                         <div class="dropdown-item text-center text-muted small">No new messages</div>

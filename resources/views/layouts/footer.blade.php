@@ -1,5 +1,5 @@
 <!-- FOOTER -->
-<footer id="footer" class="footer-black">
+<footer id="footer" class="footer-black" style="padding-bottom: 0;">
     <div class="container">
         <!-- Logo Section -->
         <div class="row logo-section">
@@ -56,11 +56,123 @@
 <script src="{{ asset('js/custom.js') }}"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script src="{{ asset('js/admin/sweetalert2.min.js') }}"></script>
+<script src="{{ asset('js/links/jquery.js') }}"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
+    // For animation on scroll
     AOS.init();
-</script>
-<script>
+
+    // For navbar image which comes from home to the navbar
+    function checkElementPosition() {
+        const element = document.querySelector('#nav-img');
+        const rect = element.getBoundingClientRect();
+
+        if (rect.top <= 0 && rect.bottom >= 0) {
+            element.classList.add("animate");
+        }
+    }
+
+    window.addEventListener('scroll', checkElementPosition);
+
+    const targetImage = document.querySelectorAll('.slide-image');
+    const options = {
+        threshold: 0.2,
+    };
+    const observer = new IntersectionObserver(callback, options);
+
+    function callback(entries, observer) {
+        entries.forEach(entry => {
+            let displayImage = document.querySelector('#nav-img');
+            if (entry.isIntersecting) {
+                displayImage.style.display = 'none';
+            } else {
+                if (window.innerWidth < 700) {
+                    displayImage.style.display = 'none';
+                } else {
+                    displayImage.style.display = 'block';
+                }
+            }
+        });
+    }
+
+    targetImage.forEach(function(target) {
+        observer.observe(target);
+    });
+
+
+
+    //   For sending contact details
+    $(document).ready(function() {
+
+        $('#contact-form').on('submit', function(e) {
+
+            e.preventDefault();
+
+            $('#validation-name, #validation-organization-name, #validation-email, #validation-phone_number, #validation-address, #validation-country, #validation-message')
+                .text('').hide();
+            $('#name, #organization_name, #email, #phone_number, #address, #country, #message')
+                .removeClass('is-invalid');
+
+            let formData = new FormData(this);
+
+            $.ajax({
+                url: "{{ route('customer.contact.store') }}",
+                method: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+
+                success: function(response) {
+                    showToast('success', response.message);
+
+                    $('#contact-form')[0].reset();
+                },
+                error: function(xhr) {
+                    if (xhr.status === 422) {
+                        let errors = xhr.responseJSON.errors;
+                        if (errors.name) {
+                            $('#validation-name').text(errors.name[0]).show();
+                            $('#name').addClass('is-invalid');
+                        }
+                        if (errors.organization_name) {
+                            $('#validation-organization-name').text(errors
+                                .organization_name[0]).show();
+                            $('#organization_name').addClass('is-invalid');
+                        }
+                        if (errors.email) {
+                            $('#validation-email').text(errors.email[0]).show();
+                            $('#email').addClass('is-invalid');
+                        }
+                        if (errors.phone_number) {
+                            $('#validation-phone_number').text(errors.phone_number[0])
+                            .show();
+                            $('#phone_number').addClass('is-invalid');
+                        }
+                        if (errors.address) {
+                            $('#validation-address').text(errors.address[0]).show();
+                            $('#address').addClass('is-invalid');
+                        }
+                        if (errors.country) {
+                            $('#validation-country').text(errors.country[0]).show();
+                            $('#country').addClass('is-invalid');
+                        }
+                        if (errors.message) {
+                            $('#validation-message').text(errors.message[0]).show();
+                            $('#message').addClass('is-invalid');
+                        }
+                    } else {
+                        showToast('error', xhr.responseJSON?.message ||
+                            'An error occurred.');
+                    }
+                }
+            });
+
+        });
+
+    });
+
+    // For scrolling to the top of the page
     function scrollToTop() {
         window.scrollTo({
             top: 0,
@@ -77,22 +189,21 @@
             button.style.display = 'none';
         }
     };
-</script>
 
-<script>
+    // For toast message from sweetalert
     function showToast(icon, title) {
-    Swal.fire({
-        toast: true,
-        position: 'top-end',
-        icon: icon,  // 'success', 'error', 'warning', 'info', 'question'
-        title: title,
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-            toast.addEventListener('mouseenter', Swal.stopTimer)
-            toast.addEventListener('mouseleave', Swal.resumeTimer)
-        }
-    });
-}
+        Swal.fire({
+            toast: true,
+            position: 'top-end',
+            icon: icon, // 'success', 'error', 'warning', 'info', 'question'
+            title: title,
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        });
+    }
 </script>

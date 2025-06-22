@@ -2,48 +2,49 @@
 
 @section('title', 'Sectors')
 @push('styles')
-    
 @endpush
 @section('content')
-     
+
 
     <div class="app-content-header">
-                <!--begin::Container-->
-                <div class="container-fluid my-5">
-                    <!--begin::Row-->
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <h3 class="mb-0">Sectors</h3>
-                        </div>
-                        <div class="col-sm-6">
-                            <ol class="breadcrumb float-sm-end">
-                                <li class="breadcrumb-item"><a href="{{ route('admin.dashboard.index') }}"><i class="fas fa-home me-1"></i> Dashboard</a></li>
-                                <li class="breadcrumb-item active" aria-current="page"><i class="fas fa-puzzle-piece me-1"></i> Sectors</li>
-                            </ol>
-                        </div>
-                    </div>
-                    <!--end::Row-->
+        <!--begin::Container-->
+        <div class="container-fluid my-5">
+            <!--begin::Row-->
+            <div class="row">
+                <div class="col-sm-6">
+                    <h3 class="mb-0">Sectors</h3>
                 </div>
-                <!--end::Container-->
-        
-                <button class="btn btn-primary d-flex align-items-center mb-4" data-bs-toggle="modal"
-                    data-bs-target="#addSectorModal">
-                    <i class="fas fa-circle-plus me-2"></i>
-                    Add New Record
-                </button>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-end">
+                        <li class="breadcrumb-item"><a href="{{ route('admin.dashboard.index') }}"><i
+                                    class="fas fa-home me-1"></i> Dashboard</a></li>
+                        <li class="breadcrumb-item active" aria-current="page"><i class="fas fa-puzzle-piece me-1"></i>
+                            Sectors</li>
+                    </ol>
+                </div>
+            </div>
+            <!--end::Row-->
+        </div>
+        <!--end::Container-->
 
-                
-                    <table id="sectorTable" class="table table-bordered table-striped">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Title</th>
-                                <th>Image</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                    </table>
-            
+        <button class="btn btn-primary d-flex align-items-center mb-4" data-bs-toggle="modal"
+            data-bs-target="#addSectorModal">
+            <i class="fas fa-circle-plus me-2"></i>
+            Add New Record
+        </button>
+
+
+        <table id="sectorTable" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Image</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+        </table>
+
     </div>
 @endsection
 
@@ -55,25 +56,24 @@
 
 @push('scripts')
     <script>
-        $(document).ready(function (){
+        $(document).ready(function() {
 
-            $(document).on('click', '#sectorCloseBtn, #sectorCancelBtn', function(){
+            $(document).on('click', '#sectorCloseBtn, #sectorCancelBtn', function() {
                 $('#createSectorForm')[0].reset();
-            }); 
+            });
 
 
             $('#sectorTable').DataTable({
                 processing: true,
                 serverSide: true,
                 ajax: "{{ route('admin.sectors.show') }}",
-                columns: [
-                    {
+                columns: [{
                         data: 'DT_RowIndex',
                         name: 'DT_RowIndex',
                         orderable: false,
                         searchable: false
                     },
-                   
+
                     {
                         data: 'title',
                         name: 'title'
@@ -96,7 +96,7 @@
 
 
 
-            $('#createSectorForm').on('submit', function (e) {
+            $('#createSectorForm').on('submit', function(e) {
                 e.preventDefault();
 
                 $('#sectorTitleError, #sectorImageError').text('').hide();
@@ -111,7 +111,7 @@
                     processData: false,
                     contentType: false,
 
-                    success: function(response){
+                    success: function(response) {
                         showToast('success', response.message);
 
                         $('#createSectorForm')[0].reset();
@@ -119,38 +119,39 @@
                         $('#sectorTable').DataTable().ajax.reload();
 
                     },
-                    error: function(xhr){
-                        if(xhr.status === 422){
+                    error: function(xhr) {
+                        if (xhr.status === 422) {
                             let errors = xhr.responseJSON.errors;
-                            if(errors.title){
+                            if (errors.title) {
                                 $('#sectorTitleError').text(errors.title[0]).show();
                                 $('#sector_title').addClass('is-invalid');
                             }
-                            if(errors.image){
+                            if (errors.image) {
                                 $('#sectorImageError').text(errors.image[0]).show();
                                 $('#image_id').addClass('is-invalid');
                             }
-                        }
-                        else{
-                            showToast('error', xhr.responseJSON?.message || 'An error occurred.');
+                        } else {
+                            showToast('error', xhr.responseJSON?.message ||
+                                'An error occurred.');
                         }
                     }
                 })
             });
 
-            $(document).on('click', '.edit-sector', function(){
+            $(document).on('click', '.edit-sector', function() {
                 let id = $(this).data('id');
-                
+
                 $.ajax({
-                    url: "{{ route('admin.sectors.edit', ['id' => ':id'])  }}".replace(':id', id),
+                    url: "{{ route('admin.sectors.edit', ['id' => ':id']) }}".replace(':id', id),
                     type: "GET",
-                    success:function(response){
+                    success: function(response) {
                         $('#editSectorForm').data('id', id);
                         $('#edit_sector_title').val(response.title);
-                        if(response.image){
-                            $('#edit_image_preview').attr("src", `/storage/${response.image}`).show();
+                        if (response.image) {
+                            $('#edit_image_preview').attr("src", `/storage/${response.image}`)
+                                .show();
 
-                        } else{
+                        } else {
                             $('#edit_image_preview').hide();
 
                         }
@@ -160,9 +161,9 @@
             });
 
 
-            $('#editSectorForm').on('submit', function(e){
+            $('#editSectorForm').on('submit', function(e) {
                 e.preventDefault();
-                
+
                 let id = $('#editSectorForm').data('id');
 
                 let formData = new FormData(this);
@@ -177,22 +178,23 @@
                     processData: false,
                     contentType: false,
 
-                    success: function(response){
+                    success: function(response) {
                         showToast('success', response.message);
 
                         $('#editSectorModal').modal('hide');
                         $('#sectorTable').DataTable().ajax.reload();
-                    }, error: function(xhr){
-                        if(xhr.status === 422){
+                    },
+                    error: function(xhr) {
+                        if (xhr.status === 422) {
                             let errors = xhr.responseJSON.errors;
-                            if(errors.title){
+                            if (errors.title) {
                                 $('#edit_sectorTitleError').text(errors.title[0]).show();
                                 $('#edit_sector_title').addClass('is-invalid');
                             }
 
-                        }
-                        else{
-                            showToast('error', xhr.responseJSON?.message || 'An error occurred.');
+                        } else {
+                            showToast('error', xhr.responseJSON?.message ||
+                                'An error occurred.');
                         }
                     }
 
@@ -201,7 +203,7 @@
             });
 
 
-            $(document).on('click', '.delete-sector', function(){
+            $(document).on('click', '.delete-sector', function() {
                 let id = $(this).data('id');
 
                 Swal.fire({
@@ -213,14 +215,14 @@
                     cancelButtonColor: '#d33',
                     confirmButtonText: 'Yes, delete it!',
                 }).then((result) => {
-                    if(result.isConfirmed){
+                    if (result.isConfirmed) {
                         $.ajax({
-                            url: '/admin/sectors/' +id,
+                            url: '/admin/sectors/' + id,
                             type: 'DELETE',
                             data: {
                                 _token: "{{ csrf_token() }}"
                             },
-                            success: function(response){
+                            success: function(response) {
                                 Swal.fire(
                                     'Deleted!',
                                     response.message,
@@ -228,7 +230,7 @@
                                 );
                                 $('#sectorTable').DataTable().ajax.reload();
                             },
-                            error: function(xhr){
+                            error: function(xhr) {
                                 Swal.fire(
                                     'Error!',
                                     'Something went wrong.',
